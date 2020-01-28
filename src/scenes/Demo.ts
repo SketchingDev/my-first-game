@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { SCENES } from "../constants/scenes";
 import * as Matter from "matter";
+
 // import Bodies = MatterJS.Bodies;
 
 export class Demo extends Phaser.Scene {
@@ -41,16 +42,16 @@ export class Demo extends Phaser.Scene {
   }
 
   private createHouses() {
-    // this.matter.add.rectangle(300, 300, 200, 100);
-    //{
-    // isStatic: true,
-    // ignoreGravity: true,
-    // render: {
-    //   fillColor: 0xFF000,
-    //   fillOpacity: 0,
-    //   visible:true
-    // }
-    // }
+    // this.matter.add.rectangle(300, 300, 200, 100,
+    //   {
+    //     isStatic: true,
+    //     ignoreGravity: true,
+    //     render: {
+    //       fillColor: 0xFF000,
+    //       fillOpacity: 0,
+    //       visible: true
+    //     }
+    //   }
     // );
     //.image(Phaser.Math.Between(0, 800), 0, 'ball');
     // this.matter.add.image(Phaser.Math.Between(0, 800), 0, 'ball');

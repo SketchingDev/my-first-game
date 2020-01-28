@@ -32,3 +32,53 @@ The [phaser3-simple-rpg project](https://github.com/pierpo/phaser3-simple-rpg) h
  * How you can have multiple scenes that are launched by the preloader
  * How objects interact via event callbacks
  * Patterns for layout and components of a game. e.g. having a GameManager to hold the state of the game (scores etc)
+
+## 28th Jan - I have a rectangle!
+
+Commit: ca067b0
+
+![Falling blocks hitting a rectangle](progress-screenshots/2020-01-28-ca067b0-rectangle.gif)
+
+I set out to create a yellow rectangle that will simulate a house in the eventual game just so I could play around
+with how blocks interact. 
+
+An hour later I'm still struggling to understand why my rectangle isn't visible?! I have at least learned that the 
+`render` property relates to how the block will look in 'debug' mode.
+
+**Code for adding a rectangle:**
+
+```typescript
+this.matter.add.rectangle(300, 300, 200, 100,
+      {
+        isStatic: true,
+        ignoreGravity: true,
+        render: {
+          fillColor: 0xFF000,
+          fillOpacity: 0,
+          visible: true
+        }
+      }
+    );
+```
+
+**Code for turning on debug mode**
+
+```typescript
+const config = {
+      type: Phaser.AUTO,
+      parent: 'game-container',
+      backgroundColor: '#125555',
+      width: 800,
+      height: 600,
+      physics: {
+        default: 'matter',
+        matter: {
+          enableSleeping: true,
+          debug: true,
+          debugBodyColor: 0xffffff
+        }
+      },
+      scene: [Preloader, Demo, GameManager, HUD]
+    };
+```
+
