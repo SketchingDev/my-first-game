@@ -1,5 +1,6 @@
-import "phaser";
+import Phaser from "phaser";
 import { SCENES } from "../constants/scenes";
+import * as Matter from "matter";
 // import Bodies = MatterJS.Bodies;
 
 export class Demo extends Phaser.Scene {
@@ -11,19 +12,16 @@ export class Demo extends Phaser.Scene {
     console.error("Demo.create");
 
     this.matter.world.setBounds(0, 0, 800, 600, 32, true, true, false, true);
-    // this.matter.add.rectangle(300, 300, 200, 100, {
-    //   isStatic: true, ignoreGravity: true, render: {
-    //     fillColor: 0xFF0000,
-    //     fillOpacity: 1,
-    //     opacity: 1,
-    //     visible: true
-    //
-    //
-    //   }
-    // });
 
-    const rectangle = this.matter.bodies.rectangle(0, 0, 120, 80, { friction: 1, restitution: 0.25 });
-    this.matter.world.add(rectangle);
+    this.matter.add.rectangle(300, 300, 200, 100, {
+      isStatic: true, ignoreGravity: true, onCollideCallback: (pair: Matter.IPair) => {
+        // pair.
+        console.error(pair.bodyA);
+      }
+    });
+
+    // const rectangle = this.matter.bodies.rectangle(0, 0, 120, 80, { friction: 1, restitution: 0.25 });
+    // this.matter.world.add(rectangle);
 
     this.time.addEvent({
       delay: 500,

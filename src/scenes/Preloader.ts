@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from "phaser";
 // import { SCENES } from "../constants/scenes";
 import { ASSETS } from "../constants/assets";
 import { SCENES } from "../constants/scenes";

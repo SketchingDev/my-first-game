@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from "phaser";
 import { SCENES } from "../constants/scenes";
 
 export class GameManager extends Phaser.Scene {

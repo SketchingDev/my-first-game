@@ -1,4 +1,4 @@
-import "phaser";
+import Phaser from "phaser";
 import { Demo } from "./scenes/Demo";
 //import { GameManager } from "./scenes/GameManager";
 import { Preloader } from "./scenes/Preloader";
