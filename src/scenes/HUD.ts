@@ -25,6 +25,10 @@ export class HUD extends Phaser.Scene {
   }
 
   private initHearts() {
+    // const rect = new Phaser.Geom.Rectangle();
+
+    // this.add.rectangle(100, 100, 200, 200, 0xFFFF00);
+
     console.log("HELLO WORLD");
     // Array(Player.MAX_HP)
     //   .fill(0)

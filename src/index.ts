@@ -20,7 +20,9 @@ class PhaserGame extends Phaser.Game {
       physics: {
         default: 'matter',
         matter: {
-          enableSleeping: true
+          enableSleeping: true,
+          debug: true,
+          debugBodyColor: 0xffffff
         }
       },
       scene: [Preloader, Demo, GameManager, HUD]
