@@ -1,5 +1,10 @@
 # Learning Journal
 
+## 21nd Jan - An idea!
+
+![An idea](progress-screenshots/2020-01-21-sketch.png)
+
+
 ## 22nd Jan - Falling blocks!
 
 Commit: 8ad9b60
