@@ -5,6 +5,9 @@ import * as Matter from "matter";
 // import Bodies = MatterJS.Bodies;
 
 export class Demo extends Phaser.Scene {
+
+  public floatingRectangle: Matter.BodyType;
+
   constructor() {
     super(SCENES.DEMO);
   }
@@ -14,24 +17,31 @@ export class Demo extends Phaser.Scene {
 
     this.matter.world.setBounds(0, 0, 800, 600, 32, true, true, false, true);
 
-    this.matter.add.rectangle(300, 300, 200, 100, {
+    this.floatingRectangle = this.matter.add.rectangle(300, 300, 200, 100, {
       isStatic: true, ignoreGravity: true, onCollideCallback: (pair: Matter.IPair) => {
-        // pair.
-        console.error(pair.bodyA);
+        const fallingBlock = (this.floatingRectangle !== pair.bodyA) ? pair.bodyA : pair.bodyB;
+        const fallingBlockBody = fallingBlock as Matter.BodyType; // The type is wrong here
+
+        this.matter.world.remove(fallingBlockBody);
+
       }
     });
 
     // const rectangle = this.matter.bodies.rectangle(0, 0, 120, 80, { friction: 1, restitution: 0.25 });
     // this.matter.world.add(rectangle);
-
+    // let ballCounter = 0;
     this.time.addEvent({
       delay: 500,
       loop: true,
       callbackScope: this,
       callback: () => {
+        // ballCounter++;
         // const ball = this.matter.add.image(Phaser.Math.Between(0, this.gameWidth), 0, 'ball');
         // const gameWidth = this.game.config.width as number;
-        this.matter.add.image(Phaser.Math.Between(0, 800), 0, "ball");
+
+
+        this.matter.add.rectangle(Phaser.Math.Between(0, 800), 0, 40, 40);
+        // this.matter.add.image(Phaser.Math.Between(0, 800), 0, ASSETS.IMAGES.HEART);//`ball-${ballCounter}`);
 
         // ball.setCircle();
         // ball.setFriction(0.005);
