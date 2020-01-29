@@ -33,6 +33,8 @@ The [phaser3-simple-rpg project](https://github.com/pierpo/phaser3-simple-rpg) h
  * How objects interact via event callbacks
  * Patterns for layout and components of a game. e.g. having a GameManager to hold the state of the game (scores etc)
 
+![Notes of scenes](progress-screenshots/2020-01-27-c9c3005-multiple-scenes-notes.png)
+
 ## 28th Jan - I have a rectangle!
 
 Commit: ca067b0
