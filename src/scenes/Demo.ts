@@ -7,6 +7,7 @@ import * as Matter from "matter";
 export class Demo extends Phaser.Scene {
 
   public floatingRectangle: Matter.BodyType;
+  private fallingBlocks: Matter.BodyType[] = [];
 
   constructor() {
     super(SCENES.DEMO);
@@ -18,14 +19,24 @@ export class Demo extends Phaser.Scene {
     this.matter.world.setBounds(0, 0, 800, 600, 32, true, true, false, true);
 
     this.floatingRectangle = this.matter.add.rectangle(300, 300, 200, 100, {
-      isStatic: true, ignoreGravity: true, onCollideCallback: (pair: Matter.IPair) => {
+      isStatic: true, ignoreGravity: true,
+      angle: 0.60, onCollideCallback: (pair: Matter.IPair) => {
         const fallingBlock = (this.floatingRectangle !== pair.bodyA) ? pair.bodyA : pair.bodyB;
-        const fallingBlockBody = fallingBlock as Matter.BodyType; // The type is wrong here
 
-        this.matter.world.remove(fallingBlockBody);
+        if (this.fallingBlocks.some(v => v === fallingBlock)) {
+          const fallingBlockBody = fallingBlock as Matter.BodyType; // The type is wrong here
+          this.matter.world.remove(fallingBlockBody);
+          const x = fallingBlockBody.position.x - 20;
+          const y = fallingBlockBody.position.y - 20;
 
+
+          this.matter.add.stack(x, y, 4, 4, 1, 1,
+            (x, y) => this.matter.bodies.rectangle(x, y, 10, 10)
+          );
+        }
       }
     });
+
 
     // const rectangle = this.matter.bodies.rectangle(0, 0, 120, 80, { friction: 1, restitution: 0.25 });
     // this.matter.world.add(rectangle);
@@ -40,7 +51,9 @@ export class Demo extends Phaser.Scene {
         // const gameWidth = this.game.config.width as number;
 
 
-        this.matter.add.rectangle(Phaser.Math.Between(0, 800), 0, 40, 40);
+        const rect = this.matter.add.rectangle(Phaser.Math.Between(0, 800), 0, 40, 40);
+        this.fallingBlocks.push(rect);
+
         // this.matter.add.image(Phaser.Math.Between(0, 800), 0, ASSETS.IMAGES.HEART);//`ball-${ballCounter}`);
 
         // ball.setCircle();
